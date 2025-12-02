@@ -21,9 +21,9 @@ def create_new_employee():
     if create_btn :
         create_employee= requests.post(f'https://project-vercel-two.vercel.app/create_employee?employee_id={emp_id}&name={emp_name}&position={emp_position}&region={emp_region}')
         if create_employee:
-            st.toast('New Employee Added Successfully')
+            st.toast('😊New Employee Added Successfully')
         else:
-            st.toast('Not Created New Employee')
+            st.toast('😓Not Created New Employee')
         st.rerun()
 
 
@@ -38,9 +38,9 @@ def modif_employee():
     if modif_btn:
         create_employee= requests.put(f'https://project-vercel-two.vercel.app/update_employee?employee_id={emp_id}&name={emp_name}&position={emp_position}&region={emp_region}')
         if create_employee:
-            st.toast('Employee Modified Successfully')
+            st.toast('😊Employee Modified Successfully')
         else:
-            st.toast('Employee Not Modified ')
+            st.toast('😓Employee Not Modified ')
         st.rerun()
 
 #4. DELETE EMPLOYEE BUTTON:
@@ -51,9 +51,9 @@ def dele_employee():
     if dltbtn:
         delete_emp= requests.delete(f"https://project-vercel-two.vercel.app/delete_employee/{emp_id}")
         if delete_emp:
-            st.toast('Employee Deleted')
+            st.toast('😊Employee Deleted')
         else:
-            st.toast('Employee Not Deleted')
+            st.toast('😓Employee Not Deleted')
 
         st.rerun()
     #------------------------------------------------------------------------
@@ -83,5 +83,5 @@ if res.status_code == 200:
         for employee in sho_emp:
             with st.container(border=True):
                 st.markdown(f'ID: [{employee['employee_id']}]')
-                st.markdown(f'##### Name: {employee['name']}')
-                st.markdown(f'Role: {employee['position']}'+ ' | '+ f'Region: {employee['region']}')
+                st.markdown(f'##### 🙋‍♂️ Name: {employee['name']}')
+                st.markdown(f'🦺Role: {employee['position']}'+ ' | '+ f'📍Region: {employee['region']}')

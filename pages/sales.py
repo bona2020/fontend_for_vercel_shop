@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+from pages.products import *
 
 st.header("Sale Page")
 st.write("This is where Sales data will go.")
@@ -23,9 +24,9 @@ def create_sales_b():
     if sbttn :
         create_sale= requests.post(f'https://project-vercel-two.vercel.app/create_sale?sale_id={sal_id}&sale_date={sal_date}&product_id={prod_id}&employee_id={em_id}&quantity={qty}&total_amount={tamount}')
         if create_sale:
-            st.toast('New Sale Created Sucessfully')
+            st.toast('😊New Sale Created Sucessfully')
         else:
-            st.toast('Sale Not Created')
+            st.toast('😓Sale Not Created')
         st.rerun()
 
 
@@ -43,9 +44,9 @@ def update_sales_b():
     if sbttn :
         update_sale= requests.put(f'https://project-vercel-two.vercel.app/update_sale?sale_id={sal_id}&sale_date={sal_date}&product_id={prod_id}&employee_id={em_id}&quantity={qty}&total_amount={tamount}')
         if update_sale:
-            st.toast('Sale Updated Sucessfully')
+            st.toast('😊Sale Updated Sucessfully')
         else:
-            st.toast('Sale Not Updated')
+            st.toast('😓Sale Not Updated')
         st.rerun()
 
 #4. DELETE A SALE BUTTON:
@@ -56,11 +57,12 @@ def delete_sales_b():
     if sbttn :
         delete_sale = requests.delete(f'https://project-vercel-two.vercel.app/delete_sale/{sal_id}')
         if delete_sale:
-            st.toast('Sale Deleted Sucessfully')
+            st.toast('😊Sale Deleted Sucessfully')
         else:
-            st.toast('Sale Not Deleted ')
+            st.toast('😓Sale Not Deleted ')
         st.rerun()
 #===================================================================================
+#Sale Buttons in header side
 res = requests.get('https://project-vercel-two.vercel.app')
 if res.status_code == 200:
     cls_sbtn=st.columns([1,1,1,1])
@@ -81,11 +83,12 @@ if res.status_code == 200:
         if del_sbtn:
             delete_sales_b()
 #===============================================================================
-    sho_sal = requests.get('https://project-vercel-two.vercel.app/get_sales')
+    sho_sal = requests.get('https://project-vercel-two.vercel.app/detail_sale/')
     sho_sal =sho_sal.json()
     for sale in sho_sal:
         with st.container(border=True):
-            st.markdown(f'ID: [{sale['sale_id']}]'+" | "+ f'Date: {sale['sale_date']}')
-            st.markdown(f'##### Product N#: [{sale['product_id']}]')
-            st.markdown(f'###### Sold By Employee N#: [{sale['employee_id']}]')
-            st.markdown(f'###### Qty: {sale['quantity']}'+ ' | '+ f'Total Amount: Rs.{sale['total_amount']}/-')
+            st.markdown(f'ID: [{sale['sale_id']}]'+" | "+ f'📅 Date: {sale['sale_date']}')
+            st.markdown(f'##### 🍲[{sale['product_name']}]')
+            st.markdown(f'###### 👨‍🍳 Sold By : [{sale['name']}]')
+            st.markdown(f'###### Qty: {sale['quantity']}'+ ' X '+f'Unite Price: {product['price']}'+' '+ f' = 💵Total Amount: Rs.{sale['total_amount']}/-')
+                

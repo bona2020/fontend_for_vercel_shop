@@ -20,9 +20,9 @@ def create_product_s():
     if cpbtn:
         create_pro = requests.post(f'https://project-vercel-two.vercel.app/create_product?product_id={pro_id}&product_name={pro_name}&category={pro_cat}&price={pro_price}')
         if create_pro:
-            st.toast('New Product Create Successfully')
+            st.toast('😊New Product Create Successfully')
         else:
-            st.toast('not Created')
+            st.toast('😓Not Created')
 
         st.rerun()
 
@@ -37,9 +37,9 @@ def update_product_s():
     if mpbtn:
         update_pro = requests.put(f'https://project-vercel-two.vercel.app/update_product?product_id={pro_id}&product_name={pro_name}&category={pro_cat}&price={pro_price}')
         if update_pro:
-            st.toast('Product Modified Successfully')
+            st.toast('😊Product Modified Successfully')
         else:
-            st.toast('Product Not Modified')
+            st.toast('😓Product Not Modified')
         st.rerun()
 
 
@@ -52,9 +52,9 @@ def delete_product_s():
     if dpbtn:
         delete_pro = requests.delete(f'https://project-vercel-two.vercel.app/delete_product/{pro_id}')
         if delete_pro:
-            st.toast('Product Deleted Successfully')
+            st.toast('😊Product Deleted Successfully')
         else:
-            st.toast('Product Not Deleted / Not Found')
+            st.toast('😓Product Not Deleted / Not Found')
         st.rerun()
 #----------------------------------------------------------------------------------
 res = requests.get('https://project-vercel-two.vercel.app')
@@ -83,5 +83,5 @@ if res.status_code == 200:
     for product in sho_pro:
         with st.container(border=True):
             st.markdown(f'ID: [{product['product_id']}]')
-            st.markdown(f'#### {product['product_name']}')
-            st.markdown(f'###### Category: {product['category']}'+ ' | '+ f'Price: Rs.{product['price']}/-')
+            st.markdown(f'#### 🥣{product['product_name']}')
+            st.markdown(f'###### 🥃 Category: {product['category']}'+ ' | '+ f'💲Price: Rs.{product['price']}/-')
